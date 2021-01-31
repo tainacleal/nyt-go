@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"../nytbooks"
-	"../nyttop"
 	"github.com/joho/godotenv"
+	"github.com/tainacleal/nyt-go/nytbooks"
+	"github.com/tainacleal/nyt-go/nyttop"
 )
 
 func main() {
