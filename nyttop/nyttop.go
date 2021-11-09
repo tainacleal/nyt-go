@@ -3,7 +3,6 @@ package nyttop
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 )
@@ -27,7 +26,7 @@ func New(apiKey string, options ...Option) *Client {
 // TopStories receives a section and returns the top NYT stories from that section.
 func (c *Client) TopStories(ctx context.Context, section Section) ([]Article, error) {
 	if _, ok := Sections[section]; !ok {
-		return nil, errors.New("invalid section")
+		return nil, ErrInvalidSection
 	}
 
 	url := generateURL(section, c.apiKey)
@@ -42,7 +41,7 @@ func (c *Client) TopStories(ctx context.Context, section Section) ([]Article, er
 // TopNStories receives a section and returns the top N stories from that section.
 func (c *Client) TopNStories(ctx context.Context, section Section, topN int) ([]Article, error) {
 	if _, ok := Sections[section]; !ok {
-		return nil, errors.New("invalid section")
+		return nil, ErrInvalidSection
 	}
 
 	url := generateURL(section, c.apiKey)

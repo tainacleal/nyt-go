@@ -1,6 +1,9 @@
 package nyttop
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
 type Section string
 
@@ -12,7 +15,7 @@ const (
 	SectionFashion      Section = "fashion"
 	SectionFood         Section = "food"
 	SectionHealth       Section = "health"
-	SectionHome         Section = "home"
+	SectionHome         Section = "home" // homepage
 	SectionInsider      Section = "insider"
 	SectionMagazine     Section = "magazine"
 	SectionMovies       Section = "movies"
@@ -34,33 +37,34 @@ const (
 )
 
 var Sections = map[Section]struct{}{
-	SectionArts:         struct{}{},
-	SectionAutomobiles:  struct{}{},
-	SectionBooks:        struct{}{},
-	SectionBusiness:     struct{}{},
-	SectionFashion:      struct{}{},
-	SectionFood:         struct{}{},
-	SectionHealth:       struct{}{},
-	SectionHome:         struct{}{},
-	SectionInsider:      struct{}{},
-	SectionMagazine:     struct{}{},
-	SectionMovies:       struct{}{},
-	SectionNYregion:     struct{}{},
-	SectionObituaries:   struct{}{},
-	SectionOpinion:      struct{}{},
-	SectionPolitics:     struct{}{},
-	SectionRealEstate:   struct{}{},
-	SectionScience:      struct{}{},
-	SectionSports:       struct{}{},
-	SectionSundayReview: struct{}{},
-	SectionTechnology:   struct{}{},
-	SectionTheater:      struct{}{},
-	SectionTMagazine:    struct{}{},
-	SectionTravel:       struct{}{},
-	SectionUpshot:       struct{}{},
-	SectionUS:           struct{}{},
-	SectionWorld:        struct{}{},
+	SectionArts:         {},
+	SectionAutomobiles:  {},
+	SectionBooks:        {},
+	SectionBusiness:     {},
+	SectionFashion:      {},
+	SectionFood:         {},
+	SectionHealth:       {},
+	SectionHome:         {},
+	SectionInsider:      {},
+	SectionMagazine:     {},
+	SectionMovies:       {},
+	SectionNYregion:     {},
+	SectionObituaries:   {},
+	SectionOpinion:      {},
+	SectionPolitics:     {},
+	SectionRealEstate:   {},
+	SectionScience:      {},
+	SectionSports:       {},
+	SectionSundayReview: {},
+	SectionTechnology:   {},
+	SectionTheater:      {},
+	SectionTMagazine:    {},
+	SectionTravel:       {},
+	SectionUpshot:       {},
+	SectionUS:           {},
+	SectionWorld:        {},
 }
+var ErrInvalidSection = errors.New("invalid section")
 
 const (
 	baseURL string = "https://api.nytimes.com/svc/topstories/v2"
